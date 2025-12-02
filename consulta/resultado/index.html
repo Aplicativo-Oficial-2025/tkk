@@ -1316,69 +1316,56 @@
     </script>
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const loadingContainer = document.getElementById("loading-container");
-            const resultContainer = document.getElementById("result-container");
-            const loadingText = document.getElementById("loading-text");
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const loadingContainer = document.getElementById("loading-container")
+    const resultContainer = document.getElementById("result-container")
+    const loadingText = document.getElementById("loading-text")
 
-            // Lista de textos para exibir
-            const texts = [
-                "Buscando valores disponíveis...",
-                "Analisando registros fiscais...",
-                "Calculando valores pendentes...",
-                "Finalizando análise dos dados..."
-            ];
+    const texts = [
+        "Buscando valores disponíveis...",
+        "Analisando registros fiscais...",
+        "Calculando valores pendentes...",
+        "Finalizando análise dos dados..."
+    ]
 
-            let currentTextIndex = 0;
+    let currentTextIndex = 0
 
-            // Função para alterar o texto
-            function changeText() {
-                currentTextIndex++;
-                if (currentTextIndex < texts.length) {
-                    loadingText.textContent = texts[currentTextIndex];
-                    setTimeout(changeText, 500); // Muda o texto a cada 10 segundos
-                }
-            }
+    function changeText() {
+        currentTextIndex++
+        if (currentTextIndex < texts.length) {
+            loadingText.textContent = texts[currentTextIndex]
+            setTimeout(changeText, 500)
+        }
+    }
 
-            // Inicia a troca de textos
-            setTimeout(changeText, 500); // Primeiro texto muda após 10 segundos
+    setTimeout(changeText, 500)
 
-            // Após 50 segundos, ocultar o texto de carregamento e mostrar o valor
-            setTimeout(() => {
-                loadingContainer.classList.add("hidden");
-                resultContainer.classList.remove("hidden");
-            }, 20000); // 50 segundos em milissegundos
-        });
+    setTimeout(() => {
+        loadingContainer.classList.add("hidden")
+        resultContainer.classList.remove("hidden")
+    }, 20000)
+})
 
-        // Função para exibir o botão após 50 segundos
-        setTimeout(function () {
-            var button = document.getElementById('delayedButton');
-            button.style.display = 'inline-flex'; // Torna o botão visível
-        }, 20000);
+setTimeout(function () {
+    var button = document.getElementById('delayedButton')
+    button.style.display = 'inline-flex'
+}, 20000)
 
-        // Função para adicionar o parâmetro 'cpf' na URL de redirecionamento
-        document.getElementById('delayedButton').onclick = function (event) {
-            event.preventDefault(); // Impede o comportamento padrão do link
+document.getElementById('delayedButton').onclick = function (event) {
+    event.preventDefault()
 
-            // Pegando o valor do CPF do localStorage
-            const cpf = localStorage.getItem('cpf'); // Obtém o valor do CPF do localStorage
+    const cpf = localStorage.getItem('cpf')
 
-            if (cpf) {
-                // Remover todos os caracteres não numéricos (ex: pontos, traços)
-                const cpfFormatado = cpf.replace(/\D/g, ''); // Remove tudo que não for número
+    if (cpf) {
+        const cpfFormatado = cpf.replace(/\D/g, '')
+        const searchParams = new URLSearchParams(window.location.search)
+        searchParams.set('cpf', cpfFormatado)
+        window.location.href = `../atendimento?${searchParams.toString()}`
+    }
+}
+</script>
 
-                // Redireciona para a página "chat" com o parâmetro 'cpf'
-                const searchParams = new URLSearchParams(window.location.search);
-
-                // Adicionar o parâmetro 'cpf'
-                searchParams.set('cpf', cpfFormatado);
-
-                // Redirecionar para a página "atendimento" com todos os parâmetros
-                window.location.href = `../atendimento?${searchParams.toString()}`;
-            }
-        };
-    </script>
     <br>
 
 
