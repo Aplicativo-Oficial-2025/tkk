@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doação Confirmada! | Ampara Brasil</title>
+  <link rel="icon" type="image/png" href="images/logoampara.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde-ampara: #00A859;
+      --verde-escuro: #004D28;
+      --verde-luz: #E8F8F0;
+      --amarelo-acao: #FFB500;
+      --texto-forte: #111827;
+      --texto-medio: #4B5563;
+      --fundo: #F8FAF9;
+      --branco: #FFFFFF;
+      --borda: #E5E7EB;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: var(--fundo);
+      color: var(--texto-forte);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 1rem;
+    }
+    .card-obrigado {
+      background: var(--branco);
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 16px 40px rgba(0, 77, 40, 0.08);
+      border: 1px solid var(--borda);
+    }
+    .logo {
+      max-width: 140px;
+      height: auto;
+      margin: 0 auto 1.5rem;
+      display: block;
+    }
+    .icon-sucesso {
+      width: 72px;
+      height: 72px;
+      background: var(--verde-luz);
+      color: var(--verde-ampara);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 0 0 10px rgba(0, 168, 89, 0.1);
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--verde-escuro);
+      margin-bottom: 0.5rem;
+    }
+    p.sub {
+      font-size: 0.95rem;
+      color: var(--texto-medio);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+    .info-box {
+      background: #F9FAFB;
+      border: 1.5px dashed #A7F3D0;
+      border-radius: 14px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 0.88rem;
+    }
+    .info-row:not(:last-child) {
+      border-bottom: 1px solid #E5E7EB;
+    }
+    .info-row .lbl {
+      color: var(--texto-medio);
+      font-weight: 600;
+    }
+    .info-row .val {
+      font-weight: 800;
+      color: var(--verde-escuro);
+    }
+    .val-destaque {
+      color: var(--verde-ampara) !important;
+      font-size: 1.2rem;
+    }
+    .btn-voltar {
+      display: block;
+      width: 100%;
+      background: var(--verde-ampara);
+      color: var(--branco);
+      padding: 1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1rem;
+      transition: all 0.2s;
+      box-shadow: 0 4px 14px rgba(0, 168, 89, 0.25);
+    }
+    .btn-voltar:hover {
+      background: #00944E;
+      transform: translateY(-1px);
+    }
+    .btn-share {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: #25D366;
+      color: var(--branco);
+      padding: 0.85rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.92rem;
+      margin-top: 10px;
+      transition: all 0.2s;
+    }
+    .btn-share:hover {
+      background: #20BA5A;
+      transform: translateY(-1px);
+    }
+    .footer-copy {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #9CA3AF;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-obrigado">
+    <img src="images/logoampara.png" alt="Ampara Brasil" class="logo">
+
+    <div class="icon-sucesso">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+
+    <h1>Doação Confirmada!</h1>
+    <p class="sub">
+      Seu gesto de amor foi recebido com sucesso. Em nome do pequeno <strong>Luis Miguel</strong> e de toda a família, o nosso mais profundo e sincero <strong>muito obrigado</strong>!
+    </p>
+
+    <div class="info-box">
+      <div class="info-row">
+        <span class="lbl">Valor da Doação:</span>
+        <span class="val val-destaque" id="displayAmount">R$ --</span>
+      </div>
+      <div class="info-row">
+        <span class="lbl">Forma de Pagamento:</span>
+        <span class="val">Pix Instantâneo</span>
+      </div>
+      <div class="info-row">
+        <span class="lbl">Status:</span>
+        <span class="val" style="color:var(--verde-ampara); font-weight:800;">✓ Pago e Confirmado</span>
+      </div>
+      <div class="info-row">
+        <span class="lbl">Identificador:</span>
+        <span class="val" id="displayTx" style="font-family:monospace; font-size:0.75rem;">--</span>
+      </div>
+    </div>
+
+    <a href="/" class="btn-voltar">VOLTAR PARA O SITE</a>
+    <a href="#" id="btnShareWhatsApp" class="btn-share" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Compartilhar no WhatsApp
+    </a>
+  </div>
+
+  <div class="footer-copy">© 2026 Ampara Brasil · Campanha Oficial Luis Miguel</div>
+
+  <script>
+    (function(){
+      var params = new URLSearchParams(window.location.search);
+      var tx = params.get('tx') || 'CONFIRMADO';
+      var amt = params.get('amount') || '';
+
+      var txEl = document.getElementById('displayTx');
+      if (txEl) txEl.textContent = tx;
+
+      var amtEl = document.getElementById('displayAmount');
+      if (amtEl) {
+        var num = parseFloat(amt);
+        if (!isNaN(num) && num > 0) {
+          amtEl.textContent = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(num);
+        } else {
+          amtEl.textContent = 'Confirmado';
+        }
+      }
+
+      var shareBtn = document.getElementById('btnShareWhatsApp');
+      if (shareBtn) {
+        var msg = 'Acabei de fazer uma doação via Pix para ajudar no tratamento do pequeno Luis Miguel na campanha do Ampara Brasil. Ajude você também acessando: ' + window.location.origin;
+        shareBtn.href = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(msg);
+      }
+    })();
+  </script>
+</body>
+</html>

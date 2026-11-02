@@ -1,0 +1,18 @@
+{
+  "name": "ampara-brasil-pix",
+  "version": "1.0.0",
+  "description": "Ampara Brasil - Campanha Luis Miguel com integração Pix InvictusPay v1",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "invictuspay",
+    "pix",
+    "ampara-brasil"
+  ],
+  "author": "",
+  "license": "ISC"
+}
